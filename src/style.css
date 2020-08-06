@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('http://www.westcoastrailforums.com/wp-content/uploads/Learn-to-bet-with-the-dice-1080x675.jpg');
+    background-size: cover; 
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.quiz_wrapper .question{
+    min-height: 50px;
+    background-color: #204d2a;
+    color: blanchedalmond;
+    float: left;
+    width: 100%;
+}
+
+.reponsesRed{
+    background-color: red!important;
+}
+
+.reponsesGreen{
+    background-color: green!important;
+}
+
+.quiz_wrapper .options ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.quiz_wrapper .options ul li{
+    margin-right: 25px;
+    display: inline-block;
+    background-color: #3d2d44;
+    width: 42%;
+    padding: 10px;
+    margin-bottom: 0px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+
+
+
