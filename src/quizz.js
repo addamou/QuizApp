@@ -1,51 +1,52 @@
-const answer1 = document.getElementById('answer1');
-const answer2 = document.getElementById('answer2');
-const answer3 = document.getElementById('answer3');
-const answer4 = document.getElementById('answer4');
-const question = document.getElementById('question');
-const answerTrue = document.getElementById('bon');
-const answerFalse = document.getElementById('faux');
-const categorie = document.getElementById('typeQuestion');
-const next = document.getElementById('next');
-const btnRenit = document.getElementById('btnRenit');
-var winGame = answerTrue.textContent;
-var lostGame = answerFalse.textContent;
-
+//===============selection des objets html============
+let reponse1 = document.getElementById('reponse1');
+let reponse2 = document.getElementById('reponse2');
+let reponse3 = document.getElementById('reponse3');
+let reponse4 = document.getElementById('reponse4');
+let question = document.getElementById('questionnaire');
+let answerTrue = document.getElementById('bon');
+let answerFalse = document.getElementById('faux');
+let categorie = document.getElementById('typeQuestion');
+let next = document.getElementById('next');
+let btnRenit = document.getElementById('btnRelance');
+let  winGame = answerTrue.textContent;
+let  lostGame = answerFalse.textContent;
+let reponse;
 setSave();
 save();
 quiiz()
-let reponse;
 
+//===== fonction de recuperation des donnée========
 function quiiz()
 {
-    const endPoint = "https://opentdb.com/api.php?amount=1";
-    fetch(endPoint)
+    let URL = "https://opentdb.com/api.php?amount=1";
+    fetch(URL)
     .then(function(response){
         return response.json();
     })
     .then(function(data){
-        const results = data.results[0];
+        let results = data.results[0];
         displayQuizz(results);
         console.log(results);
-        answer1.setAttribute('class','reload');
-        answer2.setAttribute('class','reload');
-        answer3.setAttribute('class','reload');
-        answer4.setAttribute('class','reload');
+        reponse1.setAttribute('class','reload');
+        reponse2.setAttribute('class','reload');
+        reponse3.setAttribute('class','reload');
+        reponse4.setAttribute('class','reload');
     })
     .catch(function(e){
         console.log(e);
     })
 
 }
-
+//================décrementation des bons reponses ==================
 function increase(){
     winGame = Number(answerTrue.textContent) + 1;
 }
-
+//=================décrementation pour les faux============
 function decrease(){
     lostGame = Number(answerFalse.textContent) + 1;
 }
-
+//===================fonction pour la relance du jeu ================
 function init(){
     localStorage.clear();
      answerTrue.textContent = 0;
@@ -58,7 +59,6 @@ function setSave(){
 
     answerTrue.textContent = winGame;
     answerFalse.textContent = lostGame;
-
 
 }
 
@@ -73,8 +73,6 @@ function save(){
         console.log(winGame, 'fv'+lostGame);
     }
 
-    
-
 }
 
 
@@ -85,20 +83,20 @@ function reload(){
 
 }
 
-btnRenit.addEventListener('click',function(){
+btnRelance.addEventListener('click',function(){
  init()
 })
 
 function displayQuizz(results){
     reponse = results.correct_answer;
     console.log(reponse);
-   var tabs = [];
+   let  tabs = [];
    tabs.push(results.incorrect_answers.concat(results.correct_answer));
    question.textContent = results.question;
-    answer1.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
-    answer2.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
-    answer3.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
-    answer4.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
+    reponse1.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
+    reponse2.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
+    reponse3.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
+    reponse4.textContent = tabs[0][Math.floor(Math.random()*tabs[0].length)];
     categorie.textContent = results.category;
     save();
     setSave()
@@ -120,24 +118,24 @@ function check(item){
 
     console.log(item.textContent);
 };
-answer1.addEventListener('click', function(event){
+reponse1.addEventListener('click', function(event){
     event.stopPropagation();
-    check(answer1);
+    check(reponse1);
     reload()
 });
-answer2.addEventListener('click', function(event){
+reponse2.addEventListener('click', function(event){
     event.stopPropagation();
-    check(answer2);
+    check(reponse2);
     reload()
 });
-answer3.addEventListener('click', function(event){
+reponse3.addEventListener('click', function(event){
     event.stopPropagation();
-    check(answer3);
+    check(reponse3);
     reload()
 });
-answer4.addEventListener('click', function(event){
+reponse4.addEventListener('click', function(event){
     event.stopPropagation();
-    check(answer4);
+    check(reponse4);
     reload()
 });
 
